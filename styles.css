@@ -1,29 +1,93 @@
-body {
-    background-color: #778da9;
+@font-face {
+    font-family: 'Rustico';
+    src: url('../font/Rustico-Regular.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Rustico', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(109.6deg, rgb(27, 27, 79) 11.2%, rgb(120, 201, 244) 100.2%);
+}
+
+h1 {
+    text-align: center;
+    font-size: 50px;
+    color: white;
+}
 
 .gameboard-grid {
-    display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
     margin: auto;
-    margin-top: 30vh;
-    background-color: #fdf0d5;
+    background: linear-gradient(to top, #6a85b6 0%, #bac8e0 100%);
     width: 350px;
     height: 350px;
-    border: 4px solid black;
-
+    border: 3px solid black;
 }
-
 
 .gameboard-grid-cell {
-    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    font-size: 50px;
 }
 
-
 .gameboard-grid-cell:hover {
-    transition: 400ms;
-    background-color: #d5ccba;
+    transition: 600ms;
+    background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
+    cursor: cell;
+}
+
+#form-div {
+    padding: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    color: white;
+}
+
+#new-game-btn {
+    background-color: #023047;
+    padding: 10px;
+    width: 200px;
+    height: 60px;
+    color: white;
+    border: 2px solid #023047;
+    margin: 5px;
     cursor: pointer;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.player-input-div {
+    text-align: center;
+    width: 400px;
+}
+
+#player-one-input,
+#player-two-input {
+    background-color: #778da9;
+    border: 2px solid black;
+    padding-left: 5px;
+}
+
+h2 {
+    margin: 0;
+    text-align: center;
+    font-weight: 800;
+    font-size: 32px;
+}
+
+label {
+    padding-right: 5px;
 }

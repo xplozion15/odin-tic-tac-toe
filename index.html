@@ -7,7 +7,8 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-   
+    <h1>Tic tac toe!🎯</h1>
+
     <div class="gameboard-grid">
         <div class="gameboard-grid-cell" data-index="0"></div>
         <div class="gameboard-grid-cell" data-index="1"></div>
@@ -19,6 +20,25 @@
         <div class="gameboard-grid-cell" data-index="7"></div>
         <div class="gameboard-grid-cell" data-index="8"></div>
     </div>
+
+    <div id="form-div">
+        <h2 id="result-heading">ENTER YOUR USERNAMES</h2>
+        <div class="player-input-div">
+            <label for="player-one-name">Player one?  </label>
+            <input type="text" id="player-one-input" name="player-one-name" minlength="1" maxlength="10" required>
+        </div>
+
+        <div class="player-input-div">
+            <label for="player-two-name">Player two?</label>
+            <input type="text" id="player-two-input" name="player-two-name" minlength="1" maxlength="10" required>
+        </div>
+
+        <div>
+            <button id="new-game-btn">NEW GAME!</button>
+        </div>
+
+    </div>
+
 
     
     <script src="app.js"></script>
