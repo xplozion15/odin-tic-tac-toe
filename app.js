@@ -2,13 +2,30 @@ const createPlayer = function (name, marker) {
     return { name, marker };
 };
 
-const playerOneName = prompt("What is the name of P1?");
-const playerTwoName = prompt("What is the name of P2?");
+let playerOneName, playerTwoName, playerOne, playerTwo, currentPlayer, winner;
 
-const playerOne = createPlayer(playerOneName, marker = "X");
-const playerTwo = createPlayer(playerTwoName, marker = "O");
-let currentPlayer = playerOne;
-let winner = null;
+
+
+
+
+document.querySelector("#new-game-btn").addEventListener("click", () => {
+    playerOneName = document.querySelector("#player-one-input").value;
+    playerTwoName = document.querySelector("#player-two-input").value;
+
+    playerOne = createPlayer(playerOneName, marker = "🔥");
+    playerTwo = createPlayer(playerTwoName, marker = "🧊");
+
+    currentPlayer = playerOne;
+    winner = null;
+    gameboardObject.resetGameBoard();
+
+});
+
+
+
+
+
+
 
 function toggleCurrentPlayer() {
     if (currentPlayer == playerOne) {
@@ -20,7 +37,7 @@ function toggleCurrentPlayer() {
 
 const gameboardObject = (function () {
     const gameboard = ["", "", "", "", "", "", "", "", ""];
-    
+
 
 
     const getGameBoard = () => gameboard;
@@ -28,14 +45,14 @@ const gameboardObject = (function () {
     const updateGameBoard = (index, marker = currentPlayer.marker) => {
         if (gameboard[index] === "") {
             gameboard[index] = marker;
-           
-        }
 
-        
+        }
         gameFlow();
-       
-        
+
     };
+
+
+
 
 
 
@@ -53,12 +70,13 @@ const gameboardObject = (function () {
             const firstIndex = condition[1];
             const secondIndex = condition[2];
 
-            if (gameboard[zeroIndex] == "X" && gameboard[firstIndex] == "X" && gameboard[secondIndex] == "X") {
-                alert(`${playerOne.name} is the winner!`);
+            if (gameboard[zeroIndex] == "🔥" && gameboard[firstIndex] == "🔥" && gameboard[secondIndex] == "🔥") {
+                document.querySelector("#result-heading").textContent = `${playerOne.name} is the winner! `;
+                
                 winner = playerOne;
                 return;
-            } else if (gameboard[zeroIndex] == "O" && gameboard[firstIndex] == "O" && gameboard[secondIndex] == "O") {
-                alert(`${playerTwo.name} is the winner!`);
+            } else if (gameboard[zeroIndex] == "🧊" && gameboard[firstIndex] == "🧊" && gameboard[secondIndex] == "🧊") {
+                document.querySelector("#result-heading").textContent = `${playerTwo.name} is the winner! `;
                 winner = playerTwo;
                 return;
             }
@@ -73,21 +91,43 @@ const gameboardObject = (function () {
         return { gameFlow };
     };
 
-    return { getGameBoard, updateGameBoard, gameFlow};
+
+
+    const resetGameBoard = () => {
+        // gameboardObject.updateGameBoard("")
+        for (let i = 0; i < 9; i++) {
+            gameboard[i] = "";
+        }
+
+        document.querySelectorAll(".gameboard-grid-cell").forEach(cell => {
+            cell.textContent = "";
+        });
+
+
+        winner = null;
+        currentPlayer = playerOne;
+        
+        document.querySelector("#result-heading").textContent = "GOODLUCK!";
+
+    }
+
+
+
+    return { getGameBoard, updateGameBoard, gameFlow, resetGameBoard };
 })();
 
 
 
 
 document.querySelectorAll(".gameboard-grid-cell").forEach(cell => {
-    cell.addEventListener("click", ()=> {      
+    cell.addEventListener("click", () => {
         gameboardObject.updateGameBoard(cell.dataset.index);
-        if(cell.textContent != "X" && cell.textContent != "O") {
+       
+        if (cell.textContent != "🔥" && cell.textContent != "🧊") {
             cell.textContent = currentPlayer.marker;
         }
-       
         toggleCurrentPlayer();
-    });  
+    });
 });
 
 
