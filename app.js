@@ -43,10 +43,14 @@ const gameboardObject = (function () {
     const getGameBoard = () => gameboard;
 
     const updateGameBoard = (index, marker = currentPlayer.marker) => {
+        if(winner == null) {
+
+        
         if (gameboard[index] === "") {
             gameboard[index] = marker;
 
-        }
+        }}
+        
         gameFlow();
 
     };
@@ -121,11 +125,18 @@ const gameboardObject = (function () {
 
 document.querySelectorAll(".gameboard-grid-cell").forEach(cell => {
     cell.addEventListener("click", () => {
+        if(winner == null) {
+
+      
         gameboardObject.updateGameBoard(cell.dataset.index);
        
         if (cell.textContent != "🔥" && cell.textContent != "🧊") {
             cell.textContent = currentPlayer.marker;
-        }
+        }  };
+
+
+        
+      
         toggleCurrentPlayer();
     });
 });
