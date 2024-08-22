@@ -1,6 +1,6 @@
 @font-face {
     font-family: 'Rustico';
-    src: url('../font/Rustico-Regular.otf') format('opentype');
+    src: url('./font/Rustico-Regular.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
 }
