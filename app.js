@@ -50,7 +50,7 @@ const gameboardObject = (function () {
             gameboard[index] = marker;
 
         }}
-        
+
         gameFlow();
 
     };
@@ -86,7 +86,7 @@ const gameboardObject = (function () {
             }
 
             if (winner === null && !gameboard.includes("")) {
-                alert("Its a draw");
+                document.querySelector("#result-heading").textContent = `ITS A DRAW!`;
                 winner = null;
                 return;
             }
