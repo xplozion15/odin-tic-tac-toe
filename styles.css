@@ -13,10 +13,11 @@
 
 body {
     background: linear-gradient(109.6deg, rgb(27, 27, 79) 11.2%, rgb(120, 201, 244) 100.2%);
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
 }
+
 
 h1 {
     text-align: center;
@@ -24,6 +25,7 @@ h1 {
     color: white;
     padding-top: 2px;
 }
+
 
 .gameboard-grid {
     display: grid;
@@ -34,7 +36,10 @@ h1 {
     width: 350px;
     height: 350px;
     border: 3px solid black;
+    visibility: hidden;
+    position: absolute;
 }
+
 
 .gameboard-grid-cell {
     display: flex;
@@ -49,6 +54,7 @@ h1 {
     background: linear-gradient(120deg, #a1c4fd 0%, #c2e9fb 100%);
     cursor: cell;
 }
+
 
 #form-div {
     padding: 50px;

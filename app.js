@@ -18,8 +18,10 @@ document.querySelector("#new-game-btn").addEventListener("click", () => {
     currentPlayer = playerOne;
 
     winner = null;
-    gameboardObject.resetGameBoard();
+    document.querySelector(".gameboard-grid").style.visibility = "visible";
+    document.querySelector(".gameboard-grid").style.position = "relative";
 
+    gameboardObject.resetGameBoard();
 });
 
 
@@ -37,20 +39,16 @@ function toggleCurrentPlayer() {
 const gameboardObject = (function () {
     const gameboard = ["", "", "", "", "", "", "", "", ""];
 
-
-
     const getGameBoard = () => gameboard;
 
     const updateGameBoard = (index, marker = currentPlayer.marker) => {
-        if(winner == null) {
-
-        if (gameboard[index] === "") {
-            gameboard[index] = marker;
-        }}
+        if (winner == null) {
+            if (gameboard[index] === "") {
+                gameboard[index] = marker;
+            }
+        }
         gameFlow();
     };
-
-
 
     const gameFlow = () => {
         const winningConditions = [
@@ -64,13 +62,12 @@ const gameboardObject = (function () {
             const firstIndex = condition[1];
             const secondIndex = condition[2];
 
-            if (gameboard[zeroIndex] == PLAYER_ONE_MARKER && gameboard[firstIndex] == PLAYER_ONE_MARKER  && gameboard[secondIndex] == PLAYER_ONE_MARKER) {
-                document.querySelector("#result-heading").textContent = `${playerOne.name} is the winner! `;
+            if (gameboard[zeroIndex] == PLAYER_ONE_MARKER && gameboard[firstIndex] == PLAYER_ONE_MARKER && gameboard[secondIndex] == PLAYER_ONE_MARKER) {
+                document.querySelector("#result-heading").textContent = `${playerOne.name} is the winner!`;
                 winner = playerOne;
                 return;
-            } 
-                else if (gameboard[zeroIndex] == PLAYER_TWO_MARKER && gameboard[firstIndex] == PLAYER_TWO_MARKER && gameboard[secondIndex] == PLAYER_TWO_MARKER) {
-                document.querySelector("#result-heading").textContent = `${playerTwo.name} is the winner! `;
+            } else if (gameboard[zeroIndex] == PLAYER_TWO_MARKER && gameboard[firstIndex] == PLAYER_TWO_MARKER && gameboard[secondIndex] == PLAYER_TWO_MARKER) {
+                document.querySelector("#result-heading").textContent = `${playerTwo.name} is the winner!`;
                 winner = playerTwo;
                 return;
             }
@@ -86,9 +83,7 @@ const gameboardObject = (function () {
     };
 
 
-
     const resetGameBoard = () => {
-        
         for (let i = 0; i < 9; i++) {
             gameboard[i] = "";
         }
@@ -97,15 +92,11 @@ const gameboardObject = (function () {
             cell.textContent = "";
         });
 
-
         winner = null;
         currentPlayer = playerOne;
-        
+
         document.querySelector("#result-heading").textContent = "GOODLUCK!";
-
     }
-
-
 
     return { getGameBoard, updateGameBoard, gameFlow, resetGameBoard };
 })();
@@ -115,16 +106,14 @@ const gameboardObject = (function () {
 
 document.querySelectorAll(".gameboard-grid-cell").forEach(cell => {
     cell.addEventListener("click", () => {
-        if(winner == null) {
-        gameboardObject.updateGameBoard(cell.dataset.index);
-       
-        if (cell.textContent != PLAYER_ONE_MARKER && cell.textContent != PLAYER_TWO_MARKER) {
-            cell.textContent = currentPlayer.marker;
-        }};
-        
+        if (winner == null) {
+            gameboardObject.updateGameBoard(cell.dataset.index);
+
+            if (cell.textContent != PLAYER_ONE_MARKER && cell.textContent != PLAYER_TWO_MARKER) {
+                cell.textContent = currentPlayer.marker;
+            }
+        }
+
         toggleCurrentPlayer();
     });
 });
-
-
-
